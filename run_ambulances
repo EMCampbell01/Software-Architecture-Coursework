@@ -1,0 +1,11 @@
+#!/bin/bash
+
+python ./ambulance_app.py  &
+python ./ambulance_ui.py   &
+
+sleep 10
+
+python ./test_ambulance.py
+
+
+
