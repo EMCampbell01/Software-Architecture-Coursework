@@ -1,9 +1,23 @@
+CREATE TABLE Ambulances (
+    ambulance_id TEXT PRIMARY KEY,
+    latitude REAL NOT NULL,
+    longitude REAL NOT NULL,
+    available BOOLEAN NOT NULL
+);
+
+CREATE TABLE Hospitals (
+    hospital_name TEXT PRIMARY KEY,
+    latitude REAL NOT NULL,
+    longitude REAL NOT NULL
+);
+
 CREATE TABLE EmergencyCallReports (
     call_id TEXT PRIMARY KEY,
     call_number INTEGER NOT NULL,
     call_time TEXT NOT NULL,
     call_date TEXT NOT NULL,
-    call_location TEXT NOT NULL,
+    latitude REAL NOT NULL,
+    longitude REAL NOT NULL,
     incident_type  TEXT NOT NULL,
     call_details TEXT NOT NULL
 );
@@ -11,9 +25,10 @@ CREATE TABLE EmergencyCallReports (
 CREATE TABLE DispatchRequests (
     dispatch_id TEXT PRIMARY KEY,
     ambulance_id TEXT NOT NULL,
-    hospital_id, TEXT NOT NULL,
+    hospital_name TEXT NOT NULL,
     call_id INTEGER,
     FOREIGN KEY (call_id) REFERENCES EmergencyCallReports(call_id)
+    FOREIGN KEY (hospital_name) REFERENCES EmergencyCallReports(hospital_name)
 );
 
 -- Patients Table

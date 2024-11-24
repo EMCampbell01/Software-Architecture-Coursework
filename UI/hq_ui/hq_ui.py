@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from pages.emergency_call_intake_page import create_emergency_call_intake_page
+from pages.emergency_call_report_page import create_emergency_call_intake_page
 
 # Tkinter app setup
 window = tk.Tk()

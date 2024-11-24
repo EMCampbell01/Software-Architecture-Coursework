@@ -13,7 +13,7 @@ def fetch_dispatch_requests():
     print('Fetching dispatch requests for:', current_ambulance_id)
     try:
         # Use the current ambulance ID in the API endpoint
-        response = requests.get(f"http://127.0.0.1:5000/dispatch_requests/{current_ambulance_id}")
+        response = requests.get(f"http://127.0.0.1:4800/dispatch_requests/{current_ambulance_id}")
         if response.status_code == 200:
             print(response.json())
             update_dispatch_table(response.json())
@@ -28,10 +28,10 @@ def update_dispatch_table(data):
         dispatch_table.delete(row)  # Clear existing rows
     for request in data:
         dispatch_table.insert("", tk.END, values=(
-            request["Priority"], 
-            request["Incident Type"], 
-            request["Location"], 
-            request["Destination"]
+            request["dispatch_id"], 
+            request["ambulance_id"], 
+            request["hospital"], 
+            request["call_id"]
         ))
 
 # Function to periodically fetch updates
